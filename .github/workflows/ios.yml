@@ -1,0 +1,24 @@
+# iOS layihəsinin yoxlanılması (imzasız yığım, simulyator üçün).
+# Telefona quraşdırmaq üçün Mac + Xcode + Apple hesabı lazımdır — README-yə baxın.
+name: iOS (yoxlama)
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm run ios
+      - name: Simulyator üçün yığım
+        working-directory: ios/App
+        run: xcodebuild -workspace App.xcworkspace -scheme App -configuration Debug -sdk iphonesimulator -derivedDataPath build CODE_SIGNING_ALLOWED=NO
+      - name: .app paketini arxivlə
+        run: cd ios/App/build/Build/Products/Debug-iphonesimulator && zip -r $GITHUB_WORKSPACE/Atlas-simulator.zip App.app
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Atlas-ios-simulator
+          path: Atlas-simulator.zip

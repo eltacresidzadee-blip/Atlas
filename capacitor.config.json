@@ -1,0 +1,11 @@
+{
+  "appId": "az.atlas.tarix",
+  "appName": "Atlas",
+  "webDir": "www",
+  "backgroundColor": "#f1f3f2",
+  "android": { "allowMixedContent": false },
+  "ios": { "contentInset": "never" },
+  "plugins": {
+    "SplashScreen": { "launchShowDuration": 1200, "launchAutoHide": true, "backgroundColor": "#f1f3f2", "showSpinner": false }
+  }
+}
