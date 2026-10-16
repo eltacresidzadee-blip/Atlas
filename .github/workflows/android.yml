@@ -5,6 +5,8 @@ on:
   push:
     branches: [main, master]
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-24.04
@@ -30,7 +32,15 @@ jobs:
           ./gradlew assembleDebug --no-daemon
       - name: APK-nı adlandır
         run: cp android/app/build/outputs/apk/debug/app-debug.apk Atlas.apk
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: Atlas-android-apk
           path: Atlas.apk
+      - name: «Releases» bölməsində dərc et (telefondan rahat yükləmək üçün)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: Atlas 1.0.${{ github.run_number }}
+          body: Android üçün Atlas tətbiqi. Telefonda Atlas.apk faylını yükləyin və quraşdırın.
+          files: Atlas.apk
+          make_latest: true
