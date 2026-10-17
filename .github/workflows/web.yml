@@ -1,28 +1,22 @@
-# iPhone və Android üçün quraşdırıla bilən veb-tətbiq (PWA): GitHub Pages-də dərc olunur.
-# Bir dəfə: Settings → Pages → Source: «GitHub Actions» seçin.
+# iPhone və Android üçün quraşdırıla bilən veb-tətbiq (PWA).
+# www/ qovluğu gh-pages şaxəsinə dərc olunur → https://eltacresidzadee-blip.github.io/Atlas/
 name: Veb-tətbiq (iPhone / Android)
 on:
   push:
-    branches: [main, master]
+    branches: [main]
   workflow_dispatch:
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-concurrency:
-  group: pages
-  cancel-in-progress: true
+  contents: write
 jobs:
   deploy:
     runs-on: ubuntu-24.04
-    environment:
-      name: github-pages
-      url: ${{ steps.d.outputs.page_url }}
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - run: touch www/.nojekyll
+      - uses: peaceiris/actions-gh-pages@v4
         with:
-          path: www
-      - id: d
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./www
+          publish_branch: gh-pages
+          force_orphan: true
+          commit_message: Veb-tətbiq yeniləndi

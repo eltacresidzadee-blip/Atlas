@@ -24,8 +24,8 @@ iPhone-a ayrıca tətbiq faylı yalnız Apple-ın icazəsi ilə (Mac + Xcode + A
 Ən sadə yol — tətbiqi veb-tətbiq kimi quraşdırmaqdır: ana ekranda ikonu olur, tam ekran açılır, internetsiz işləyir.
 
 1. Yuxarıdakı 1–3-cü addımları edin.
-2. Repozitoriyada **Settings → Pages → Source: GitHub Actions** seçin.
-3. **Actions → Veb-tətbiq** işi bitəndən sonra sayt ünvanı görünəcək (`https://<istifadəçi-adı>.github.io/atlas/`).
+2. Repozitoriya açıq (public) olmalıdır; sayt `gh-pages` şaxəsindən avtomatik dərc olunur.
+3. Ünvan: **https://eltacresidzadee-blip.github.io/Atlas/**
 4. iPhone-da həmin ünvanı **Safari**-də açın → **Paylaş** düyməsi → **Ana ekrana əlavə et**.
    Android-də Chrome-da açın → **⋮ → Tətbiqi quraşdır**.
 
