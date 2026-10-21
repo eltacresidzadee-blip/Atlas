@@ -1,0 +1,27 @@
+# Gömrük İmtahanı — iPhone/Android üçün veb-tətbiq.
+# Atlas saytının içində ayrıca ünvanda dərc olunur: https://eltacresidzadee-blip.github.io/Atlas/gomruk/
+name: Gomruk Imtahani veb-tetbiq
+on:
+  push:
+    branches: [gomruk-imtahan]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - name: Saytı hazırla
+        run: |
+          mkdir -p site
+          cp -r web/. site/
+          cp app/src/main/assets/index.html site/index.html
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          publish_branch: gh-pages
+          destination_dir: gomruk
+          keep_files: true
+          commit_message: Gömrük İmtahanı veb-tətbiqi yeniləndi
