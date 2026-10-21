@@ -1,0 +1,17 @@
+{
+  "name": "Atlas — Azərbaycan tarixi və coğrafiyası",
+  "short_name": "Atlas",
+  "description": "İmtahana hazırlıq: xəritələr, yaddaş kartları və testlər.",
+  "lang": "az",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f1f3f2",
+  "theme_color": "#0d5876",
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
