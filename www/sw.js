@@ -8,6 +8,7 @@ self.addEventListener('fetch',e=>{
   const u=new URL(r.url);
   const ext=/fonts\.(googleapis|gstatic)\.com|cdn\.jsdelivr\.net/.test(u.host);
   if(u.origin!==location.origin&&!ext)return;
+  if(u.pathname.includes('/gomruk/'))return; // Gömrük İmtahanı öz keşini idarə edir
   // Səhifənin özü: əvvəl internet (yenilik dərhal görünsün), internet yoxdursa keşdən
   if(r.mode==='navigate'){e.respondWith(fetch(r).then(res=>{const cp=res.clone();caches.open(V).then(c=>c.put('index.html',cp));return res}).catch(()=>caches.match('index.html')));return}
   e.respondWith(caches.open(V).then(async c=>{
