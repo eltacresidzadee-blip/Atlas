@@ -13,6 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: touch www/.nojekyll
+      - name: Gömrük İmtahanı səhifəsini saxla (gomruk-imtahan budağından)
+        run: |
+          git fetch --depth=1 origin gh-pages || exit 0
+          git archive FETCH_HEAD gomruk | tar -x -C www || true
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
