@@ -25,13 +25,16 @@ jobs:
         run: npm install
       - name: Android layihəsi, ikonlar və açılış ekranı
         run: npm run android
-      - name: Sabit imza açarı (yeni versiya köhnənin üstünə quraşdırılsın, işarələr itməsin)
-        run: mkdir -p ~/.android && cp signing/debug.keystore ~/.android/debug.keystore
       - name: APK yığılır
         working-directory: android
         run: |
           chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
+          # Sabit imza açarı: hər yığım eyni açarla imzalanır ki, yeni versiya köhnənin üstünə quraşdırılsın və işarələr itməsin.
+          ./gradlew assembleDebug --no-daemon \
+            -Pandroid.injected.signing.store.file="$GITHUB_WORKSPACE/signing/debug.keystore" \
+            -Pandroid.injected.signing.store.password=android \
+            -Pandroid.injected.signing.key.alias=androiddebugkey \
+            -Pandroid.injected.signing.key.password=android
       - name: APK-nı adlandır
         run: cp android/app/build/outputs/apk/debug/app-debug.apk Gomruk-sual-cavab.apk
       - uses: actions/upload-artifact@v5
