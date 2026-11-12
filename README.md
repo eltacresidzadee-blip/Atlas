@@ -1,53 +1,28 @@
-# Atlas — Android və iOS tətbiqi
+# Gömrük müsahibə sual-cavabları
 
-Azərbaycan tarixi və coğrafiyası üzrə imtahana hazırlıq tətbiqi: xəritələr, yaddaş kartları, testlər.
-Bu qovluq hazır tətbiq layihəsidir (Capacitor). Tətbiqin özü `www/index.html` faylındadır.
+Gömrük müsahibəsinə hazırlıq üçün sual-cavab kartları: 820 sual, gündəlik təkrar, mövzular və axtarış.
+Proqram internetsiz işləyir; "bilirdim / unutmuşdum" işarələri telefonun özündə saxlanır.
 
-Üç yol var — ən asandan başlayın.
+## Android
 
----
+Ən son APK: **[Gomruk-sual-cavab.apk](https://github.com/eltacresidzadee-blip/Atlas/releases/latest/download/Gomruk-sual-cavab.apk)**
 
-## 1. Android APK — kompüterə heç nə quraşdırmadan (GitHub ilə)
+1. Linki telefonda açın, fayl yüklənsin.
+2. Faylı açın. Telefon "naməlum mənbədən quraşdırma" icazəsi istəyəcək: razılaşın.
 
-1. <https://github.com> saytında pulsuz hesab açın.
-2. **New repository** → ad verin (məsələn `atlas`) → **Create repository**.
-3. **uploading an existing file** linkinə basın və bu qovluğun **bütün** məzmununu
-   (gizli `.github` qovluğu da daxil olmaqla) sürüşdürüb atın → **Commit changes**.
-   > `.github` qovluğu görünmürsə: zip faylını açarkən gizli faylları göstərin və ya GitHub Desktop istifadə edin.
-4. Yuxarıda **Actions** bölməsinə keçin → **Android APK** işinin bitməsini gözləyin (5–8 dəqiqə).
-5. Bitmiş işə daxil olun → aşağıda **Artifacts → Atlas-android-apk** → yükləyin, zip-i açın → `Atlas.apk`.
-6. APK-nı telefona köçürün və açın. Telefon «naməlum mənbədən quraşdırma» icazəsi istəyəcək — razılaşın.
+Hər dəyişiklikdən sonra GitHub APK-nı özü yığır və **Releases** bölməsinə qoyur (5–8 dəqiqə).
 
-## 2. iPhone (və Android) — veb-tətbiq kimi quraşdırma
+## iPhone (və Android) — veb-tətbiq
 
-iPhone-a ayrıca tətbiq faylı yalnız Apple-ın icazəsi ilə (Mac + Xcode + Apple hesabı) yüklənə bilər.
-Ən sadə yol — tətbiqi veb-tətbiq kimi quraşdırmaqdır: ana ekranda ikonu olur, tam ekran açılır, internetsiz işləyir.
+1. iPhone-da **Safari**-də açın: <https://eltacresidzadee-blip.github.io/Atlas/>
+2. **Paylaş** düyməsi → **Ana ekrana əlavə et**.
 
-1. Yuxarıdakı 1–3-cü addımları edin.
-2. Repozitoriya açıq (public) olmalıdır; sayt `gh-pages` şaxəsindən avtomatik dərc olunur.
-3. Ünvan: **https://eltacresidzadee-blip.github.io/Atlas/**
-4. iPhone-da həmin ünvanı **Safari**-də açın → **Paylaş** düyməsi → **Ana ekrana əlavə et**.
-   Android-də Chrome-da açın → **⋮ → Tətbiqi quraşdır**.
+Ana ekranda ikonu olur, tam ekran açılır və ilk açılışdan sonra internetsiz işləyir.
 
-## 3. Mağazaya hazır versiya (proqramçılar üçün)
+## Tərkibi
 
-Tələblər: Node.js 20, Android Studio (Android üçün), Mac + Xcode 15+ (iOS üçün).
+- `www/index.html`: proqramın özü (bir HTML səhifəsi, suallar və cavablar içindədir)
+- `.github/workflows/android.yml`: APK-nı yığan iş axını
+- `.github/workflows/web.yml`: veb-tətbiqi dərc edən iş axını
 
-```bash
-npm install
-npm run android        # android/ layihəsini, ikonları və açılış ekranını yaradır
-npx cap open android   # Android Studio-da açılır → Build → Generate Signed Bundle / APK
-
-npm run ios            # ios/ layihəsini yaradır (yalnız Mac)
-npx cap open ios       # Xcode-da açılır → komandanı (Team) seçin → telefonda işə salın / App Store-a göndərin
-```
-
-`www/index.html` dəyişəndən sonra: `npx cap sync`.
-
----
-
-### Qeydlər
-- Tətbiq ID-si: `az.atlas.tarix` (`capacitor.config.json`-da dəyişmək olar).
-- Ikon və açılış ekranı mənbələri: `resources/` qovluğu.
-- Kart və test irəliləyişi telefonun özündə saxlanılır.
-- Şriftlər və vektor xəritə sərhədləri ilk açılışda internetdən yüklənir; internet olmayanda tətbiq ehtiyat xəritə şəkli ilə işləyir.
+Bu repozitoriyada əvvəl "Atlas" tətbiqi var idi. Onun son vəziyyəti `v1.0.7` etiketində qalır.

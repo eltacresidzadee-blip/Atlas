@@ -1,5 +1,5 @@
 # GitHub-a yüklədikdən sonra Android APK avtomatik yığılır.
-# Nəticə: Actions → «Android APK» → son işə daxil olun → Artifacts → Atlas-android-apk
+# Nəticə: «Releases» bölməsində Gomruk-sual-cavab.apk (və Actions → son iş → Artifacts)
 name: Android APK
 on:
   push:
@@ -25,22 +25,24 @@ jobs:
         run: npm install
       - name: Android layihəsi, ikonlar və açılış ekranı
         run: npm run android
+      - name: Sabit imza açarı (yeni versiya köhnənin üstünə quraşdırılsın, işarələr itməsin)
+        run: mkdir -p ~/.android && cp signing/debug.keystore ~/.android/debug.keystore
       - name: APK yığılır
         working-directory: android
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug --no-daemon
       - name: APK-nı adlandır
-        run: cp android/app/build/outputs/apk/debug/app-debug.apk Atlas.apk
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk Gomruk-sual-cavab.apk
       - uses: actions/upload-artifact@v5
         with:
-          name: Atlas-android-apk
-          path: Atlas.apk
+          name: Gomruk-sual-cavab-apk
+          path: Gomruk-sual-cavab.apk
       - name: «Releases» bölməsində dərc et (telefondan rahat yükləmək üçün)
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
-          name: Atlas 1.0.${{ github.run_number }}
-          body: Android üçün Atlas tətbiqi. Telefonda Atlas.apk faylını yükləyin və quraşdırın.
-          files: Atlas.apk
+          name: Gömrük sual-cavab 1.0.${{ github.run_number }}
+          body: Android üçün Gömrük sual-cavab tətbiqi. Telefonda Gomruk-sual-cavab.apk faylını yükləyin və quraşdırın.
+          files: Gomruk-sual-cavab.apk
           make_latest: true

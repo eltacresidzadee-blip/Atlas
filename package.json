@@ -1,10 +1,10 @@
 {
-  "name": "atlas-azerbaycan",
+  "name": "gomruk-sual-cavab",
   "version": "1.0.0",
   "private": true,
-  "description": "Atlas — Azərbaycan tarixi və coğrafiyası (Android və iOS tətbiqi)",
+  "description": "Gömrük müsahibə sual-cavabları (Android və veb-tətbiq)",
   "scripts": {
-    "assets": "capacitor-assets generate --iconBackgroundColor '#0d5876' --iconBackgroundColorDark '#0d5876' --splashBackgroundColor '#f1f3f2' --splashBackgroundColorDark '#10161b'",
+    "assets": "capacitor-assets generate --iconBackgroundColor '#0d5a4c' --iconBackgroundColorDark '#0d5a4c' --splashBackgroundColor '#eaefed' --splashBackgroundColorDark '#0f1614'",
     "android": "cap add android && npm run assets && cap sync android",
     "ios": "cap add ios && npm run assets && cap sync ios",
     "sync": "cap sync"
